@@ -1,0 +1,68 @@
+Usage:
+You will need 2 files for the program to run. An input file and an output file.
+This program will read in a long list of words from shakespeare and sort them into lists of their length and their frequency (how many times the word appears).
+For the input file, on one line, write 2 numbers with a space in between them. The first number is the requested length of a word.
+The second number is the frequency of the word with your inputted length. That will be one command. To make another command, do the same thing on the next line.
+
+Example Input:
+4 0
+23 4
+5 3
+7 5
+
+In the terminal, write: ./bard <input file> <output file>
+This will run the program, reading in the commands from the input file, and then outputting them in the output file.
+
+Program:
+This program consists of 4 files, Makefile, linkedlist.cpp, bard.cpp, and bard.h. 
+Makefile is used to make the program.
+linkedlist.cpp has all of the methods for the linkedlist class, like insert, find, delete, and sort.
+bard.h is the header file that declares all the methods used by LinkedList and also defines the Node struct.
+bard.cpp is where the input and output are accepted, and where the program uses the LinkedList with its methods 
+to produce the output, which uses many linkedlists sorted by frequency and lexicographical ordering to output the 
+words requested by the input commands.
+
+How it works:
+
+Startup:
+When the program runs, it accepts 2 files, the input and output files. They are put on hold while the program reads the shakespeare file 
+to get the words in it. These words are put into an array of LinkedLists. I made this array start at the size 10, and it will increase 
+its size if it sees a word larger than the amount of indices it has. This is done by making a larger array and then copying the old array's 
+contents into it. The index of the array corresponds to the length of the word-5. I made it word-5 so that the first 5 indices are used, 
+because the assignment said that words less than 5 letters were removed. When the program reads a word, it first checks the length of the 
+word, and then inserts the word in the LinkedList at the index it corresponds to. When the word is inserted, the LinkedList first checks if 
+the word is already in a Node, inside the LinkedList. If it is not, then the word gets added to a new Node at the end of the list. However, 
+if the word is found, then its frequeency counter of its corresponding Node will be increased by 1. The program does this repeatedly until 
+the end of the shakespeare file. Once that happens, the program starts sorting each LinkedList in the array. 
+
+Sort:
+The sorting algorithm receives the finalized and unsorted list of words and their frequencies. First it creates a new LinkedList, called sorted.
+It saves the next pointer of the unsorted list's head, and then calls the helper function, with sorted and the head as the parameters. Since the
+sorted LinkedList has no head yet, it's head is set to the unsorted list's head. Then the program goes back to the saved next pointer Node of the 
+unsorted list. It saves the pointer of that Node, and then calls the helper function again. This time, list isn't empty, so the program checks if
+the new node has a larger frequeency or smaller lexicographic order than the node already in the list. If that is true, then the new node is placed 
+at the head of the list, and its next pointer is updated to point to the old head. If it is false, then the new node checks the next pointer of the
+Node already in the list, and does the same checks until it is placed at the end, or between where it is smaller than the frequeency before it and in 
+the correct lexicographic order. The program does this for every LinkedList in the array of LinkedLists. Also, if the program was changed to sort during 
+the phase where it is reading in the shakespeare file, then it would have to keep resorting the same words, just in case their frequency updates or a word
+lexicographically smaller than them appears. Once it sorts through the whole array, then the program starts reading the commands from the imput file.
+
+You can envision two lists, one unsorted and one sorted one. There is a pointer that iterates across the unsorted list, unaffected by pointer updates
+in the sorted list, so that all words will eventually be moved over. The pointer gets a word, then goes to word->next. The word that the pointer has, is then 
+compared with the words within the sorted list. The word will then be placed in a place where it has a lesser or equal frequency and higher lexicographic 
+order to the words to its left, and an equal or greater frequency and lower lexicographic order than the words on its right.
+
+Commands:
+The program first gets a line from the input file, and converts it to a c string, so that some functions work on it, like strtok. This splits the c string
+into multiple strings that are then converted into integers that can be used for the program to find the requested word. The first integer is used as the 
+requested length of the word, while the second integer is used to get the word at a certain rank in the LinkedList. The program first uses the length integer
+to access the array index that corresponds with the requested length. Then it uses a for loop to iterate until it reaches the requested rank. Once that happens,
+it is printed to the output file. If the word doesn't exist, or the input is out of range, then a dash is printed instead. The program then does this again
+until the end of the input file. After that, the files are closed and the program ends. 
+
+Credits:
+I used the linked list example given in codio for help on the starting implementation of a linked list when working on this.
+I also used the listwrapper implementation in the codio example for reading inputs and outputting lines.
+https://www.geeksforgeeks.org/insertion-sort-for-singly-linked-list/ I also got help from this for the sorting algorithm.
+I also used that student made extra test that was posted on Piazza. This helped me realize that my output would print a dash if
+the input wanted a word that was in a LinkedList at the end of an array.

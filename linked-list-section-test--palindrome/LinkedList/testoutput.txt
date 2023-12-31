@@ -1,0 +1,10 @@
+10
+palindrome
+20 10
+not palindrome
+10 20 10
+palindrome
+10 10
+palindrome
+20 10 10
+not palindrome

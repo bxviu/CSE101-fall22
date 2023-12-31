@@ -1,0 +1,45 @@
+Usage:
+An input and output file is needed for the program to run.
+The program will first read in the given list of movies and their actors.
+Then it will read the instructions from the input file, which has actors, and output the result, a path between the actors, 
+to the output file.
+On each line for the input file, include the names of two actors, the program will find a link between them through movies 
+and other actors they performed with.
+Instead of spaces between their names, use an underscore. Only use a space to signify a different actor.
+
+Example:
+Brad_Pitt John_Cena
+Arnold_Schwarzeneggar Ali
+Big_Boi_III Clive_Owen
+
+Files:
+There are 4 files for this program, Makefile, graph.h, graph.cpp, and sixdegrees.cpp.
+Makefile will compile the program.
+graph.h declares the methods and makes some of the classes.
+graph.cpp implements some methods in the header file.
+sixdegrees.cpp reads in the files and outputs them.
+
+Program:
+Reading in the actors and movies:
+The program reads each line, splitting it up by the spaces. The first word it finds is set as the movie.
+This movie is added to a map of movies, using the title as the key. The value that goes with the key is a vector of the same Movie
+just incase there are multiple movies with the same title, but not same actors. If that is the case, the movies with a duplicate title get
+an id number attached to them to differentiate them. Then the rest of the words in the line are set as actors of the movie that was read. 
+Additionally, each actor is added to an actor map, containing a vector of movies they acted in. This vector also includes the movies' ids, so
+if the actor acted in a duplicate movie, they won't be incorrectly linked in a path. This is done for each line in the file.
+
+Finding a path between actors:
+The program first reads in the starting actor and ending actor from a line in the input file. It first creates a graph vertex with the starting
+actor. This graph vertex is added to a group of vertexs, which is used to print out the final path at the end. It then adds all movies that the 
+actor starred in, to a graph vertex, this vertex is added to the group it came from and put into a queue. Then for each movie in the queue, the 
+actors that acted in the movie will similarly be added a vertex group and pushed back into to the queue. This is done until 
+the ending actor is found, or there is no path found. 
+
+Credits:
+I copied and modified my input reader program from HW3 to read input.
+I also copied my Makefile from HW3 and modified it.
+Also used https://cplusplus.com/ for help with finding the methods for
+sets, unordered_maps, vectors, and queues.
+Used https://www.techiedelight.com/use-object-key-stdset-cpp/ for help
+with figuring out how to overload operator operations.
+Also used the student test to see my output in comparison to their output.

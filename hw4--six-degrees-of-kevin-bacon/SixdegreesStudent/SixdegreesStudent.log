@@ -1,0 +1,11 @@
+Start with 0.0 points.
+=================================
+Just testing very simple input that can find it vertices are present
+Passed Tests/simple-input.txt
+
+=============================================
+Score is now
+2.0
+Timeout error in running ./sixdegrees /home/codio/workspace/.guides/secure/Rubric/Tests/more-input.txt my_output.txt: Took more than 120 seconds
+Final score
+2

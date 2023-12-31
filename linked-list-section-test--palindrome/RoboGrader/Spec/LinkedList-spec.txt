@@ -1,0 +1,9 @@
+# Spec file for palindrome, in LinkedList tests of CSE101, WInter 2020
+#
+#################
+c1: make
+e1: listwrapper
+p1: ./listwrapper
+t1: simple-input-palindrome.txt
+o1: student-output.txt
+i1: simple-output-palindrome.txt

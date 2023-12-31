@@ -1,0 +1,31 @@
+palindrome
+10
+palindrome
+
+palindrome
+20 10
+not palindrome
+10 20 10
+palindrome
+10 10
+palindrome
+3 5 7 10 10
+not palindrome
+10 7 5 3 5 7 10 10
+not palindrome
+7 5 3 5 7 10 10
+not palindrome
+10 10 7 5 3 5 7 10 10
+palindrome
+10 10 7 5 5 7 10 10
+palindrome
+10 10 7 5 7 10 10
+palindrome
+10 10 5 7 10 10
+not palindrome
+10 10 7 10 10
+palindrome
+10 7 10 10
+not palindrome
+7 10 10
+not palindrome

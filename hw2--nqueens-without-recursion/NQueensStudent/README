@@ -1,0 +1,74 @@
+Usage:
+An input file and output file are needed for this program to run.
+This program will read in commands from the input file to create a chess board of the requested
+size and provide a configuration of queens that are not able to attack each other. Queens are
+able to attack each other if they are on the same column, row, or diagonal. The input file can 
+also provide coordinates for queens that should be on the board. There can be multiple lines of
+commands in one input file. 
+The first number in the input file will be the dimension of the chess board. Further numbers after
+that must be in pairs of 2, the first number in the pair will be the preset queen's column, and the
+second number in the pair will be the row.
+
+Example Input:
+4 1 2 (4 will be the dimension of the board, 1 will be the column of a preset queen, 2 will be the row)
+5 1 1 2 3
+15 11 3
+1 1 1
+10
+30 1 1 2 3 3 5 4 2 5 4
+
+To run the program, type ./nqueens <input file> <output file> inside the terminal.
+This will read in the commands from the input file and output queen configurations in the output
+file.
+
+Files:
+This program is comprised of 2 files, which are Makefile and nqueens.cpp.
+Makefile is used to compile nqueens.
+nqueens.cpp reads in the input file, making a board, including preset queens, and then uses a stack
+to get the rest of the queen positions to make a valid board of queens.
+
+Program:
+----------
+Startup:
+The program starts by reading from the input file and getting the dimension and coordinates of preset queens.
+If coordinates of the preset queens violate the queen rules, then the board is not valid and no solution is 
+printed to the output file. When a preset queen is valid, it gets added to a vector of valid queens, called 
+queenBoard. There are 2 sets, each pertaining to the remaining columns and rows. The coordinates that the queen 
+used are then removed from these 2 sets. For example, if a queen has coordinates (1,2) and the set available 
+columns is {1,2,3,4} and rows are {1,2,3,4}, then if that queen is added to queenBoard the available column 
+set will become {2,3,4} and row will become {1,3,4}. If all the preset queens are valid, then the program proceeds 
+to getting a valid configuration for the whole board. If there are no preset queens, then it will just skip the part
+where it accepts preset queens.
+
+Queen Configuration:
+The program makes possible queen positions by using the first available column, and all the remaining available rows. 
+Then they are put together in a Pair object with the current queenBoard(holding the current valid queens). These pairs 
+are pushed to the stack. Then there is a while loop that gets the top of the stack and first checks if the possible queen
+in the Pair can fit in the queenBoard. This is done by iterating through the queenBoard and possible queen to see if 
+any of them have coordinates that are on each other's diagonal. This is done by seeing if the distance between the queens
+vertically and horizontally is the same. The program does not need to check for the same column or row since the need to 
+check for them was removed by having sets of the available columns and rows. If the queen is not accepted, then it is 
+ignored and the next Pair on the stack is taken. If the possible queen is accepted, then its coordinates are removed from
+the sets of available columns and rows. Then it pushes more possible queen positions using the available columns and rows
+again. This is done until a valid configuration is found or the stack is empty. The result is printed to the output file.
+
+Output:
+The output file gets the result of the input command on the same line of the file. When printing to the output, the
+program either prints out a configuration of queens or no solution. When printing a configuration, the program first 
+sorts the queenBoard so that the columns are in increasing order. Once the whole input file has been read, the files
+are closed and the program ends.
+---------
+
+Credits:
+I used this website to get help on the methods of using the inbuilt c++ stack.
+https://cplusplus.com/reference/stack/stack/
+
+I used these websites for guidance on how to read input from files.
+https://cplusplus.com/reference/string/string/find/
+https://cplusplus.com/reference/string/string/npos/
+https://java2blog.com/split-string-space-cpp/#Using_getline_Method
+
+I used this website for help on the methods of the inbuilt c++ set.
+https://cplusplus.com/reference/set/set/
+
+Also used the student test provided in Piazza to see how my output compared to the student who made it.

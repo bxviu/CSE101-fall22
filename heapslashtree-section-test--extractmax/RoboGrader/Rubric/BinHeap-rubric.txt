@@ -1,0 +1,22 @@
+# Rubric file for BinHeap tests of CSE101, WInter 2020
+#
+#################
+s0: 0
+c0: make
+e0: heapwrapper
+p0: ./heapwrapper
+#################
+s1: 5
+t1: Tests/simple-input.txt
+i1: Tests/simple-output.txt
+m1: Simple input passes
+#################
+s2: 2
+t2: Tests/check-empty-input.txt
+i2: Tests/check-empty-output.txt
+m2: Input with empty heap passes
+#################
+s3: 3
+t3: Tests/large-input.txt
+i3: Tests/large-output.txt
+m3: Large input passes

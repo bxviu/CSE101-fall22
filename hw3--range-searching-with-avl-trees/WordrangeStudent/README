@@ -1,0 +1,68 @@
+Usage:
+An input and output file will be needed to run this program.
+It will read commands from the input file and insert strings or count the amount of strings between the given range.
+The range queries will then be printed to the output file.
+The two commands that this program will read are inputs and range queries.
+For input, start a new line with the letter "i", then a space, and then put the string after it.
+For the range query, start a new line with the letter "q", then a space, the minimum string, a space, the maximum string.
+
+Example:
+input:
+i bruh
+i hello
+i wow
+i suspicious
+i amogus
+i procrastination
+i happiness
+i xylophone
+
+range query:
+r i spent
+r too many
+r hours on
+r this and
+r it is
+r not very
+r efficient still
+
+After making a satisfactory input file, to run the program, enter this command in terminal:
+./wordrange <input file> <output file>
+
+Files:
+This program is made of 4 files, avltree.h, avltree.cpp, wordrange.cpp, and Makefile
+avltree.h declares the methods of the AVL tree as well as the Node class.
+avltree.cpp implements the methods from the header file
+wordrange.cpp reads the input file, does the appropriate commands to its AVl tree, and outputs the result to the output file.
+Makefile compiles the other files into an executable.
+
+Program:
+wordrange.cpp
+The program firsts starts by creating an AVL tree object, and then reading in input from the input file. It will either insert
+a string into the tree, or print an integer from a range query into the output file. After it reaches the end of the input file
+it will close the input and output files and the program ends.
+
+avltree.cpp
+The methods in this in general only do 2 things, insert a string, or answer a range query.
+Insert:
+This inserts the given string into the AVL tree. First it traverses through the tree until it finds a spot that follows the invariant
+that the left subtree of a node is less than the subtree and the right subtree is greater. Once the spot is found, it checks if the string
+is already there. If it is, then the string is not added since no duplicates are allowed. If there is no duplicate, the string is added as a 
+new node. Then update is called on it. This will update it and its ancestors height and number of children values. Additionally, it will also
+check the balance factor of the current node. If it is within -1 and 1, then it satifies the invarient of an AVL tree, and continues updating
+ancestors as normal. It the balance factor is outside the range, then rotations are performed on the Node. There are either left and right rotations
+done depending on where the node is in the tree. Update is then called on the newly rotated nodes so that their counts remain accurate. Once update 
+reaches the root, it has finished and no more updates are needed.
+
+Range Query:
+This first finds the closest nodes that match with the minimum string and maximum string. For shortness, the found minimum node will be called min node
+and the found maximum node will be called max node. Using the min node, it finds the least common ancestor to both the min node and max node. Then it 
+starts counting the range. This is done by splitting the tree in half. First the method goes left of the lca, which means all of its right subtrees are
+guaranteed to be in the range because of the invariant. It will keep going left and adding right subtrees until its current subtree is less than the minimum
+string. Then it will repeatedly go right until its subtree is within the range again. Once that happens, it will continue going left. It does this until it
+reaches a leaf. This is done in a similar way for the right side of the lca. After both sides have been counted, the range is returned.
+
+Credits:
+I based my AVL tree off the example BST given in codio. I used parts of the header, makefile, and tree implementation.
+I also used a little of my own lca code from the example BST.
+I also used https://en.wikipedia.org/wiki/Range_tree for figuring out how to find the range.

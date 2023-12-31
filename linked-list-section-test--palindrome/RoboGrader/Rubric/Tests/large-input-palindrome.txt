@@ -1,0 +1,52 @@
+pal
+i 10
+p
+pal
+d 10
+p
+pal
+i 10
+i 20
+p
+pal
+i 10
+p
+pal
+d 20
+p
+pal
+i 7
+i 5
+i 3
+p
+pal
+i 5
+i 7
+i 10
+p
+pal
+d 10
+p
+pal
+i 10
+i 10
+p
+pal
+d 3
+p
+pal
+d 5
+p
+pal
+d 7
+p
+pal
+d 5
+p
+pal
+d 10
+p
+pal
+d 10
+p
+pal

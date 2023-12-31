@@ -1,0 +1,23 @@
+Checker passed. Start with 0.0 points.
+=================================
+Simple input passes
+Passed Tests/simple-input.txt
+
+=============================================
+Score is now
+5.0
+Input with empty heap passes
+Passed Tests/check-empty-input.txt
+
+=============================================
+Score is now
+7.0
+Large input passes
+Passed Tests/large-input.txt
+
+=============================================
+Score is now
+10.0
+Solution has passed all tests. The ordeal is over, you can take a breath now.
+Final score
+10
